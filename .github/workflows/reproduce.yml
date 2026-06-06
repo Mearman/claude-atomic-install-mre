@@ -1,0 +1,27 @@
+name: Reproduce
+
+on: [push, pull_request]
+
+jobs:
+  demonstrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bug — non-atomic install + mtime launcher
+        run: |
+          # The bug reproduce script exits non-zero because the launcher
+          # picks a 0-byte stub and exec fails. We assert that failure.
+          set +e
+          ./bug/reproduce.sh
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            echo "::error::bug reproduce exited 0 — expected failure"
+            exit 1
+          fi
+          echo ""
+          echo "Bug reproduced: launcher exited $rc (Permission denied on stub)"
+
+      - name: Fix — atomic install + current pointer
+        run: ./fix/reproduce.sh

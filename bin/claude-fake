@@ -1,0 +1,7 @@
+#!/bin/bash
+# Stand-in for the Claude Code native binary.
+# Uses its own filename as the version string. Follows symlinks so that
+# when launched via a `current -> 2.1.166` pointer, it reports the version.
+self=$(readlink -f "$0" 2>/dev/null || readlink "$0" 2>/dev/null || echo "$0")
+name=$(basename "$self")
+echo "claude-fake v${name}"

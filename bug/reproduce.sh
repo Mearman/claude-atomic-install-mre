@@ -30,3 +30,4 @@ echo "=== exit: $rc ==="
 echo
 echo "The launcher picked 2.1.167 (newest by mtime) but it's a 0-byte stub"
 echo "with no exec bit. exec fails with Permission denied / cannot execute."
+exit $rc

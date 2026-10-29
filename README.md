@@ -1,5 +1,7 @@
 # claude-atomic-install-mre
 
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/Mearman/claude-atomic-install-mre)
+
 A minimal reproduction of a bug in the Claude Code native installer where a
 partial or interrupted version download leaves a stub that the launcher can't
 exec.
